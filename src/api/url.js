@@ -1,4 +1,4 @@
-const baseUrl = 'http://localhost:3000'
+const baseUrl = '/api/v1'
 const baseUrl_events = `${baseUrl}/events`
 const baseUrl_user = `${baseUrl}/user`
 
