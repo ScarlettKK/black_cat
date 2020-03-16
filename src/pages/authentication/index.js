@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import api from '../../api/authentication'
 import { Input, Button } from 'antd'
+import history from '../../api/history'
 
 class Authentication extends Component {
 
@@ -28,9 +29,6 @@ class Authentication extends Component {
         <Button 
           onClick={this.login.bind(this)}
         >Login</Button>
-        <Button 
-          onClick={this.logout.bind(this)}
-        >Logout</Button>
     	</div>
     )
   }
@@ -42,12 +40,11 @@ class Authentication extends Component {
   }
 
   login() {
-    console.log("cat")
-    api.login(this.state);
-  }
-
-  logout() {
-    api.logout();
+    api.login(this.state).then((ifSuccess) => {
+      if(ifSuccess){
+        history.push('/')
+      }
+    });
   }
 }
 

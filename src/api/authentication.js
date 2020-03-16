@@ -17,7 +17,8 @@ export default {
             url: url.auth(),
             data: userMessage
         }).then((res) => {
-            if(res.status === 200) {
+            const ifSuccess = (res.status === 200)
+            if(ifSuccess) {
                 const result = res.data;
                 const user = result.user;
                 localStorage.set(USER_TOKEN, result.token)
@@ -25,6 +26,7 @@ export default {
 
                 axiosToken.set();
             }
+            return ifSuccess;
         })
     },
     logout: () => {
@@ -33,12 +35,14 @@ export default {
             method: 'delete',
             url: url.auth()
         }).then((res) => {
-            if(res.status === 200) {
+            const ifSuccess = (res.status === 200)
+            if(ifSuccess) {
                 localStorage.delete(USER_TOKEN)
                 localStorage.delete(USER_ID)
 
                 axiosToken.delete();
             }
+            return ifSuccess;
         })
     }
 }
