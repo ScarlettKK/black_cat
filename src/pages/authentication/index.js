@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import CommonButton from '../../components/common-button'
 import api from '../../api/authentication'
 import { Input, Button } from 'antd'
 
