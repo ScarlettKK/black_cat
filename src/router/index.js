@@ -6,6 +6,8 @@ import Personal from '../pages/personal'
 import ActivityList from '../pages/activity-list'
 import ActivityDetails from '../pages/activity-details'
 
+import axiosToken from '../api/axios-token'
+
 class Router extends Component {
   render() {
     return (
@@ -18,6 +20,10 @@ class Router extends Component {
     		</BrowserRouter>
     	</div>
     )
+  }
+
+  componentDidMount() {
+	axiosToken.set()
   }
 }
 

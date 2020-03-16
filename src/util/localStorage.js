@@ -3,7 +3,7 @@ const USER_TOKEN = 'token'
 
 export default {
     get: (key) => {
-        JSON.parse(localStorage.getItem(key))
+        return JSON.parse(localStorage.getItem(key))
     },
     set: (key, value) => {
         try {

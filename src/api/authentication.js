@@ -28,6 +28,7 @@ export default {
         })
     },
     logout: () => {
+        console.log(localStorage.get(USER_TOKEN))
         return axios({
             method: 'delete',
             url: url.auth()

@@ -26,9 +26,11 @@ class Authentication extends Component {
           onChange={this.handleInputChange.bind(this, 'password')}
         />
         <Button 
-          content="Login"
           onClick={this.login.bind(this)}
         >Login</Button>
+        <Button 
+          onClick={this.logout.bind(this)}
+        >Logout</Button>
     	</div>
     )
   }
@@ -42,6 +44,10 @@ class Authentication extends Component {
   login() {
     console.log("cat")
     api.login(this.state);
+  }
+
+  logout() {
+    api.logout();
   }
 }
 
