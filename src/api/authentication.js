@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios from './axios'
 import url from './url'
 import localStorage, { USER_TOKEN, USER_ID } from '../util/localStorage'
 import axiosToken from './axios-token'

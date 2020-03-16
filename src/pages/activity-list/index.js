@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import api from '../../api/events'
 
 class ActivityList extends Component {
   render() {
@@ -7,6 +8,9 @@ class ActivityList extends Component {
     		ActivityList
     	</div>
     )
+  }
+  componentDidMount() {
+    api.getEvents()
   }
 }
 

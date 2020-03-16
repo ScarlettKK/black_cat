@@ -2,6 +2,10 @@ const baseUrl = '/api/v1'
 const baseUrl_events = `${baseUrl}/events`
 const baseUrl_user = `${baseUrl}/user`
 
+function generateQueryString () {
+    console.log('generateQueryString')
+}
+
 export default {
     join() {
         return `${baseUrl}/join`
@@ -12,8 +16,8 @@ export default {
     channels() {
         return `${baseUrl}/channels`
     },
-    events() {
-        return `${baseUrl_events}`
+    events(queryFilters) {
+        return `${baseUrl_events}${queryFilters ? `?${generateQueryString(queryFilters)}` : ``}`
     },
     event(event_id) {
         return `${baseUrl_events}/${event_id}`

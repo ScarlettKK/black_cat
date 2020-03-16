@@ -9,21 +9,21 @@ import ActivityDetails from '../pages/activity-details'
 import axiosToken from '../api/axios-token'
 
 class Router extends Component {
+  constructor(props) {
+	  super(props)
+	  axiosToken.set()
+  }
   render() {
     return (
     	<div>
     		<BrowserRouter>
-    			<Route path='/' exact component={Authentication}></Route>
+    			<Route path='/login' exact component={Authentication}></Route>
     			<Route path='/personal' exact component={Personal}></Route>
-				<Route path='/list' exact component={ActivityList}></Route>
+				<Route path='/' exact component={ActivityList}></Route>
 				<Route path='/details' exact component={ActivityDetails}></Route>
     		</BrowserRouter>
     	</div>
     )
-  }
-
-  componentDidMount() {
-	axiosToken.set()
   }
 }
 
