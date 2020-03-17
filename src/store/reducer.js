@@ -1,5 +1,6 @@
-const defaultSatate = {}
+import { combineReducers } from 'redux-immutable'
+import userReducer from './user'
 
-export default (state = defaultSatate, action) => {
-    return state;
-}
+export default combineReducers({
+	user: userReducer
+})

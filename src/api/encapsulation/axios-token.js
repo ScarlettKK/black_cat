@@ -1,5 +1,5 @@
 import axios from './axios'
-import localStorage, {USER_TOKEN} from '../util/localStorage'
+import localStorage, {USER_TOKEN} from '../../util/localStorage'
 
 export default {
     set: () => {

@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 import api from '../../api/authentication'
 import { Input, Button } from 'antd'
-import history from '../../api/history'
+import { connect } from 'react-redux'
+import { axiosToken } from '../../api/encapsulation'
+import localStorage, { USER_TOKEN, USER_ID } from '../../util/localStorage'
 
 class Authentication extends Component {
 
@@ -14,23 +17,28 @@ class Authentication extends Component {
   }
 
   render() {
-    return (
-    	<div>
-        User Name: 
-        <Input 
-          value={this.state.username}
-          onChange={this.handleInputChange.bind(this, 'username')}
-        />
-        Password: 
-        <Input 
-          value={this.state.password}
-          onChange={this.handleInputChange.bind(this, 'password')}
-        />
-        <Button 
-          onClick={this.login.bind(this)}
-        >Login</Button>
-    	</div>
-    )
+    const { loginStatus } = this.props;
+    if(!loginStatus) {
+      return (
+        <div>
+          User Name: 
+          <Input 
+            value={this.state.username}
+            onChange={this.handleInputChange.bind(this, 'username')}
+          />
+          Password: 
+          <Input 
+            value={this.state.password}
+            onChange={this.handleInputChange.bind(this, 'password')}
+          />
+          <Button 
+            onClick={this.login.bind(this)}
+          >Login</Button>
+        </div>
+      )
+    } else {
+      return <Redirect to='/'/>
+    }
   }
 
   handleInputChange(type, event) {
@@ -40,12 +48,38 @@ class Authentication extends Component {
   }
 
   login() {
-    api.login(this.state).then((ifSuccess) => {
-      if(ifSuccess){
-        history.push('/')
+    api.login(this.state).then((res) => {
+      console.log(res)
+      const ifSuccess = (res.status === 200)
+      if(ifSuccess) {
+          const result = res.data;
+          const user = result.user;
+          localStorage.set(USER_TOKEN, result.token)
+          localStorage.set(USER_ID, user.id)
+
+          const action = {
+            type: 'set_user_data',
+            login: true,
+            ...user
+          }
+          console.log(action)
+          this.props.changeUserData(action);
+
+          axiosToken.set();
       }
-    });
+    })
   }
 }
 
-export default Authentication;
+const mapState = (state) => ({
+	  loginStatus: state.getIn(['user', 'login'])
+})
+
+
+const mapDispatch = (dispatch) => ({
+	changeUserData(action){
+		dispatch(action)
+	}
+})
+
+export default connect(mapState, mapDispatch)(Authentication);
