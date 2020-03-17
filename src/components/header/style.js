@@ -1,3 +1,11 @@
+/*
+ * @Author: your name
+ * @Date: 2020-03-17 16:00:31
+ * @LastEditTime: 2020-03-17 19:36:47
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /black_cat/src/components/header/style.js
+ */
 import styled from 'styled-components';
 import searchLogo from '../../static/svg/search.svg'
 
@@ -29,5 +37,5 @@ export const Logo = styled.img`
 
 export const AvatarWrapper = styled.div`
     position: absolute;
-    right: 5px;
+    right: 55px;
 `;
