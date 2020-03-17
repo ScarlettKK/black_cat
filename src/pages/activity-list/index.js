@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { Redirect } from 'react-router-dom';
-import { Button } from 'antd'
+// import { Redirect } from 'react-router-dom';
 import eventsApi from '../../api/events'
 import authenticationApi from '../../api/authentication'
 import { axiosToken } from '../../api/encapsulation'
@@ -10,19 +9,19 @@ import localStorage, { USER_TOKEN, USER_ID } from '../../util/localStorage'
 
 class ActivityList extends Component {
   render() {
-    const { loginStatus } = this.props;
-    if(loginStatus) {
+    // const { loginStatus } = this.props;
+    // if(loginStatus) {
       return (
         <div>
           <ActivityItem/>
-          <Button 
+          <button 
             onClick={this.logout.bind(this)}
-          >Logout</Button>
+          >Logout</button>
         </div>
       )
-    } else {
-      return <Redirect to='/login'/>
-    }
+    // } else {
+    //   return <Redirect to='/login'/>
+    // }
   }
   componentDidMount() {
     eventsApi.getEvents()

@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import api from '../../api/authentication'
-import { Input, Button } from 'antd'
 import { connect } from 'react-redux'
 import { axiosToken } from '../../api/encapsulation'
 import localStorage, { USER_TOKEN, USER_ID } from '../../util/localStorage'
+import { LoginWrapper, Mask, TitileBox, LoginBox, Input, Button } from './style'
 
 class Authentication extends Component {
 
@@ -20,21 +20,27 @@ class Authentication extends Component {
     const { loginStatus } = this.props;
     if(!loginStatus) {
       return (
-        <div>
-          User Name: 
-          <Input 
-            value={this.state.username}
-            onChange={this.handleInputChange.bind(this, 'username')}
-          />
-          Password: 
-          <Input 
-            value={this.state.password}
-            onChange={this.handleInputChange.bind(this, 'password')}
-          />
-          <Button 
-            onClick={this.login.bind(this)}
-          >Login</Button>
-        </div>
+        <LoginWrapper>
+          <Mask/>
+          <TitileBox>
+            <p>FIND THE MOST LOVED ACTIVITIES</p>
+            <h1>BLACK CAT</h1>
+            {/* <img/> */}
+          </TitileBox>
+          <LoginBox>
+            <Input 
+              value={this.state.username}
+              onChange={this.handleInputChange.bind(this, 'username')}
+              placeholder="User Name"
+            />
+            <Input
+              value={this.state.password}
+              onChange={this.handleInputChange.bind(this, 'password')}
+              placeholder="Password"
+            />
+            <Button onClick={this.login.bind(this)}>Login</Button>
+          </LoginBox>
+        </LoginWrapper>
       )
     } else {
       return <Redirect to='/'/>
@@ -49,7 +55,6 @@ class Authentication extends Component {
 
   login() {
     api.login(this.state).then((res) => {
-      console.log(res)
       const ifSuccess = (res.status === 200)
       if(ifSuccess) {
           const result = res.data;
@@ -62,7 +67,6 @@ class Authentication extends Component {
             login: true,
             ...user
           }
-          console.log(action)
           this.props.changeUserData(action);
 
           axiosToken.set();
