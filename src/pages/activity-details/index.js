@@ -14,10 +14,14 @@ import {
 import ChannelName from '../../components/channel-name'
 import Avatar from '../../components/avatar'
 import Tabs from '../../components/tabs'
+import Details from './details'
+import Comments from './comment'
+import Participants from './participants'
 
 class ActivityDetails extends Component {
   render() {
     const event = this.getCurrentEvent();
+    console.log(event)
     if(event) {
       return (
         <ActivityDetailsWrapper>
@@ -36,13 +40,13 @@ class ActivityDetails extends Component {
           <ActivityDetailsContent>
             <Tabs contents={['Details','Participants','Comments']}>
               <div>
-                test1
+                <Details contents={event}></Details>
               </div>
               <div>
-                test2
+                <Participants></Participants>
               </div>
               <div>
-                test3
+                <Comments></Comments>
               </div>
             </Tabs>
           </ActivityDetailsContent>
