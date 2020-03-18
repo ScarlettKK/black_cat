@@ -6,5 +6,11 @@ export default {
             method: 'get',
             url: url.events(eventFilters)
         })
+    },
+    getEvent: (id) => {
+        return axios({
+            method: 'get',
+            url: url.event(id)
+        })
     }
 }

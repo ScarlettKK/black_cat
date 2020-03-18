@@ -20,9 +20,8 @@ import Participants from './participants'
 
 class ActivityDetails extends Component {
   render() {
-    const event = this.getCurrentEvent();
-    console.log(event)
-    if(event) {
+    const { event } = this.props;
+    if(event.name) {
       return (
         <ActivityDetailsWrapper>
           <Header/>
@@ -43,7 +42,7 @@ class ActivityDetails extends Component {
                 <Details contents={event}></Details>
               </div>
               <div>
-                <Participants></Participants>
+                <Participants contents={event}></Participants>
               </div>
               <div>
                 <Comments></Comments>
@@ -63,35 +62,24 @@ class ActivityDetails extends Component {
   }
 
   componentDidMount() {
-    this.props.getEvents()
-  }
-
-  getCurrentEvent() {
-    const { events } = this.props;
-    const id = this.props.match.params.id;
-    if(events.length > 0) {
-      const result = events.find((event) => { 
-        if (event.id.toString() === id)  return event; 
-        return undefined;
-      })
-      return result;
-    }
+    this.props.getEvent(this.props.match.params.id)
   }
 }
 
 const mapState = (state) => ({
-  events: state.getIn(['events', 'events'])
+  event: state.getIn(['event', 'event'])
 })
 
 const mapDispatch = (dispatch) => ({
-	getEvents(){
+	getEvent(id){
 		dispatch(() => {
-      eventsApi.getEvents().then((res) => {
+      eventsApi.getEvent(id).then((res) => {
         const data = res.data;
         if(data) {
+          console.log(data.event)
           const action = {
-            type: 'set_events',
-            events: data.events
+            type: 'set_event',
+            event: data.event
           }
           dispatch(action)
         }
