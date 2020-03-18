@@ -1,13 +1,12 @@
 import styled from 'styled-components';
 
 export const ActivityDetailsWrapper = styled.div`
-	
+	positon: relative;
 `;
 
 export const ActivityDetailsHeader = styled.div`
     margin: 70px 20px 20px 20px;
     position: absolute;
-    border-bottom: 1px solid #E8E8E8;
 `;
 
 export const ActivityDetailsTitile = styled.h1`
@@ -44,6 +43,8 @@ export const CreateMessage = styled.div`
 `
 
 export const ActivityDetailsContent = styled.div`
-    
+    position: absolute;
+    top: 250px;
+    width: 100%;
 `;
 

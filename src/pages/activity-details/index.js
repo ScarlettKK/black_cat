@@ -13,11 +13,11 @@ import {
 } from './style'
 import ChannelName from '../../components/channel-name'
 import Avatar from '../../components/avatar'
+import Tabs from '../../components/tabs'
 
 class ActivityDetails extends Component {
   render() {
     const event = this.getCurrentEvent();
-    console.log(event)
     if(event) {
       return (
         <ActivityDetailsWrapper>
@@ -33,7 +33,19 @@ class ActivityDetails extends Component {
               </CreateMessage>
             </ActivityCreatorMessage>
           </ActivityDetailsHeader>
-          <ActivityDetailsContent></ActivityDetailsContent>
+          <ActivityDetailsContent>
+            <Tabs contents={['Details','Participants','Comments']}>
+              <div>
+                test1
+              </div>
+              <div>
+                test2
+              </div>
+              <div>
+                test3
+              </div>
+            </Tabs>
+          </ActivityDetailsContent>
         </ActivityDetailsWrapper>
       )
     } else {
