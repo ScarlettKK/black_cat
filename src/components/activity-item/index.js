@@ -6,7 +6,9 @@ import {
   ActivityTime,
   ActivityContent,
   ActivityFooter,
-  ChannelNameWrapper 
+  ChannelNameWrapper,
+  Like,
+  Going
 } from './style'
 import Avatar from '../avatar'
 import ChannelName from '../channel-name'
@@ -26,9 +28,12 @@ class ActivityItem extends Component {
           </ChannelNameWrapper>
         </ActivityHeader>
         <ActivityTitle>{event.name}</ActivityTitle>
-        <ActivityTime>ActivityTime</ActivityTime>
+    <ActivityTime>{event.begin_time} - {event.end_time}</ActivityTime>
         <ActivityContent>{event.description}</ActivityContent>
-        <ActivityFooter>ActivityFooter</ActivityFooter>
+        <ActivityFooter>
+          <Going>{event.me_going ? 'I am going!' : `${event.goings_count} Going`}</Going>
+          <Like>{event.me_likes ? 'I like it' : `${event.likes_count} Likes`}</Like>
+        </ActivityFooter>
     	</ActivityItemWrapper>
     )
   }

@@ -48,5 +48,14 @@ export const ActivityContent = styled.p`
 `;
 
 export const ActivityFooter = styled.div`
+	font-size: 12px;
+	color: #453257;
+`;
+
+export const Going = styled.span`
 	
+`;
+
+export const Like = styled.span`
+	margin-left: 30px;
 `;
