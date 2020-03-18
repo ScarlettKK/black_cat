@@ -29,7 +29,8 @@ export const ChannelNameWrapper = styled.div`
 `;
 
 export const ActivityTitle = styled.h1`
-	font-size: 18px
+	font-size: 18px;
+	color: #453257;
 `;
 
 export const ActivityTime = styled.p`
@@ -45,6 +46,7 @@ export const ActivityContent = styled.p`
 	display: -webkit-box; 
 	-webkit-line-clamp: 3; 
 	-webkit-box-orient: vertical;
+	color: #67616D;
 `;
 
 export const ActivityFooter = styled.div`

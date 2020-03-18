@@ -1,11 +1,3 @@
-/*
- * @Author: your name
- * @Date: 2020-03-13 17:23:34
- * @LastEditTime: 2020-03-17 18:54:45
- * @LastEditors: Please set LastEditors
- * @Description: In User Settings Edit
- * @FilePath: /black_cat/src/pages/activity-list/index.js
- */
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 // import { Redirect } from 'react-router-dom';
@@ -16,6 +8,7 @@ import ActivityItem from '../../components/activity-item'
 // import localStorage, { USER_TOKEN, USER_ID } from '../../util/localStorage'
 import Header from '../../components/header'
 import { ActivityListWrapper, ActivityListBody } from './style'
+import { Link } from 'react-router-dom'
 
 class ActivityList extends Component {
   render() {
@@ -31,7 +24,11 @@ class ActivityList extends Component {
               // return <li key={index} onClick={() => {
               //   handleDeleteItem(index)
               // }}>{item}</li>
-              return <ActivityItem event={event} key={event.id}/>
+              return (
+                <Link key={event.id} to={'/details/' + event.id} className="resetLinkAtyle">
+                  <ActivityItem event={event} key={event.id}/>
+                </Link>
+              )
             })
           }
           {/* <button 
