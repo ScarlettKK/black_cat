@@ -5,10 +5,8 @@ class Avatar extends Component {
   render() {
     return (
     	<AvatarWrapper>
-            <a href={this.props.urlToPersonal}>
-                <img src={this.props.imgUrl} alt="user header"/>
-            </a>
-        </AvatarWrapper>
+        <img src={this.props.imgUrl} alt="user header"/>
+      </AvatarWrapper>
     )
   }
   

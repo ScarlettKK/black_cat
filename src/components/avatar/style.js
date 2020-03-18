@@ -1,11 +1,3 @@
-/*
- * @Author: your name
- * @Date: 2020-03-17 16:58:23
- * @LastEditTime: 2020-03-17 19:56:24
- * @LastEditors: Please set LastEditors
- * @Description: In User Settings Edit
- * @FilePath: /black_cat/src/components/avatar/style.js
- */
 import styled from 'styled-components';
 
 export const AvatarWrapper = styled.span`
