@@ -2,11 +2,12 @@ import styled from 'styled-components';
 
 export const ActivityDetailsWrapper = styled.div`
     position: relative;
+    overflow-x: hidden;
 `;
 
 export const ActivityDetailsHeader = styled.div`
-    margin: 70px 20px 20px 20px;
-    position: absolute;
+    margin: 0px 20px 20px 20px;
+    padding-top: 65px;
 `;
 
 export const ActivityDetailsTitile = styled.h1`
@@ -43,8 +44,26 @@ export const CreateMessage = styled.div`
 `
 
 export const ActivityDetailsContent = styled.div`
-    position: absolute;
-    top: 250px;
     width: 100%;
 `;
 
+export const ActivityButtons = styled.div`
+    height: 60px;
+    width: 100%;
+    font-size: 14px;
+    .purple {
+        background-color: #8560A9;
+        width: 30%;
+        height: 60px;
+        border: none;
+        color: #463258;
+        margin: -1px;
+    }
+    .yellow {
+        background-color: #D5EF7F;
+        width: 40%;
+        height: 60px;
+        border: none;
+        color: #788C36;
+    }
+`;

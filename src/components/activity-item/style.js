@@ -11,11 +11,12 @@ export const ActivityHeader = styled.div`
 	.username{
 		font-size: 12px;
 		color: #67616D;
-		margin-left: 45px;
 		display: inline-block;
 		height: 50px;
 		text-align: center;
 		line-height: 50px;
+		position: absolute;
+		margin-left: 10px;
 	}
 `;
 

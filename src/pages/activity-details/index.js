@@ -9,7 +9,8 @@ import {
   ActivityDetailsContent,
   ActivityDetailsTitile,
   ActivityCreatorMessage,
-  CreateMessage
+  CreateMessage,
+  ActivityButtons
 } from './style'
 import ChannelName from '../../components/channel-name'
 import Avatar from '../../components/avatar'
@@ -49,6 +50,11 @@ class ActivityDetails extends Component {
               </div>
             </Tabs>
           </ActivityDetailsContent>
+          <ActivityButtons>
+            <button className="purple">Comment</button>
+            <button className="purple">Like</button>
+            <button className="yellow">Going</button>
+          </ActivityButtons>
         </ActivityDetailsWrapper>
       )
     } else {
