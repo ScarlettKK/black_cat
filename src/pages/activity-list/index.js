@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 // import { Redirect } from 'react-router-dom';
 import eventsApi from '../../api/events'
 // import authenticationApi from '../../api/authentication'
-// import { axiosToken } from '../../api/encapsulation'
+// import { initUserMessage } from '../../api/encapsulation'
 import ActivityItem from '../../components/activity-item'
 // import localStorage, { USER_TOKEN, USER_ID } from '../../util/localStorage'
 import Header from '../../components/header'
@@ -51,7 +51,7 @@ class ActivityList extends Component {
   //         localStorage.delete(USER_TOKEN)
   //         localStorage.delete(USER_ID)
 
-  //         axiosToken.delete();
+  //         initUserMessage.delete();
   //     }
   //   })
   // }

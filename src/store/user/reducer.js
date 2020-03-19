@@ -2,19 +2,15 @@ import { fromJS } from 'immutable';
 
 const defaultState = fromJS({
     login: false,
-    username: '',
-    email: '',
-    avatar: ''
+    user: {}
 })
 
 export default (state = defaultState, action) => {
 	switch(action.type) {
-		case 'set_user_data':
+		case 'set_login_data':
 			return state.merge({
                 login: action.login,
-                username: action.username,
-                email: action.email,
-                avatar: action.avatar
+                user: action.user
             })
 		default:
 			return state;

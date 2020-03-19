@@ -1,6 +1,6 @@
-import axiosToken from './axios-token'
+import initUserMessage from './initUserMessage'
 import history from './history'
 import url from './url'
 import axios from './axios'
 
-export { axiosToken, history, url, axios }
+export { initUserMessage, history, url, axios }

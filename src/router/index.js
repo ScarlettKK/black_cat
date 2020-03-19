@@ -8,12 +8,12 @@ import ActivityList from '../pages/activity-list'
 import ActivityDetails from '../pages/activity-details'
 import store from '../store'
 
-import { axiosToken } from '../api/encapsulation'
+import { initUserMessage } from '../api/encapsulation'
 
 class Router extends Component {
   constructor(props) {
 	  super(props)
-	  axiosToken.set()
+	  initUserMessage.set()
   }
   render() {
     return (

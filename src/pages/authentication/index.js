@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import api from '../../api/authentication'
 import { connect } from 'react-redux'
-import { axiosToken } from '../../api/encapsulation'
+import { initUserMessage } from '../../api/encapsulation'
 import localStorage, { USER_TOKEN, USER_ID } from '../../util/localStorage'
 import { LoginWrapper, Mask, TitileBox, LoginBox, Input, Button } from './style'
 
@@ -63,13 +63,13 @@ class Authentication extends Component {
           localStorage.set(USER_ID, user.id)
 
           const action = {
-            type: 'set_user_data',
+            type: 'set_login_data',
             login: true,
-            ...user
+            user: user
           }
           this.props.changeUserData(action);
 
-          axiosToken.set();
+          initUserMessage.set();
       }
     })
   }
