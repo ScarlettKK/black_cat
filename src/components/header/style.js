@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-03-17 16:00:31
- * @LastEditTime: 2020-03-17 19:36:47
+ * @LastEditTime: 2020-03-19 11:19:33
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /black_cat/src/components/header/style.js
@@ -37,5 +37,5 @@ export const Logo = styled.img`
 
 export const AvatarWrapper = styled.div`
     position: absolute;
-    right: 55px;
+    right: 15px;
 `;

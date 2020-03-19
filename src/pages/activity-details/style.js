@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const ActivityDetailsWrapper = styled.div`
-	positon: relative;
+    position: relative;
 `;
 
 export const ActivityDetailsHeader = styled.div`
@@ -26,7 +26,7 @@ export const ActivityCreatorMessage = styled.div`
 
 export const CreateMessage = styled.div`
     display: inline-block;
-    margin-left: 60px;
+    margin-left: 20px;
     p{
         margin: 0px;
     }

@@ -4,6 +4,8 @@ export const AvatarWrapper = styled.span`
     width: 35px;
     height: 50px;
     border-radius: 50%;
+    position: relative;
+    display: inline-block;
     img {
         width: 35px;
         height: 35px;

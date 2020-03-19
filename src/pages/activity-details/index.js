@@ -20,7 +20,7 @@ import Participants from './participants'
 
 class ActivityDetails extends Component {
   render() {
-    const { event } = this.props;
+    const { event } = this.props || {};
     if(event.name) {
       return (
         <ActivityDetailsWrapper>
@@ -42,7 +42,7 @@ class ActivityDetails extends Component {
                 <Details contents={event}></Details>
               </div>
               <div>
-                <Participants contents={event}></Participants>
+                <Participants id={event.id}></Participants>
               </div>
               <div>
                 <Comments></Comments>
@@ -74,9 +74,8 @@ const mapDispatch = (dispatch) => ({
 	getEvent(id){
 		dispatch(() => {
       eventsApi.getEvent(id).then((res) => {
-        const data = res.data;
-        if(data) {
-          console.log(data.event)
+        if(res) {
+          const data = res.data;
           const action = {
             type: 'set_event',
             event: data.event
