@@ -3,7 +3,7 @@ import { Redirect } from 'react-router-dom';
 import api from '../../api/authentication'
 import { connect } from 'react-redux'
 import { initUserMessage } from '../../api/encapsulation'
-import localStorage, { USER_TOKEN, USER_ID } from '../../util/localStorage'
+import localStorage, { USER_TOKEN } from '../../util/localStorage'
 import { LoginWrapper, Mask, TitileBox, LoginBox, Input, Button } from './style'
 
 class Authentication extends Component {
@@ -60,7 +60,6 @@ class Authentication extends Component {
           const result = res.data;
           const user = result.user;
           localStorage.set(USER_TOKEN, result.token)
-          localStorage.set(USER_ID, user.id)
 
           const action = {
             type: 'set_login_data',

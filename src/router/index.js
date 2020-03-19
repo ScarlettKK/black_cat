@@ -19,10 +19,10 @@ class Router extends Component {
     return (
     	<Provider store={store}>
     		<BrowserRouter>
-				<Route path='/' exact component={ActivityList}></Route>
+				  <Route path='/' exact component={ActivityList}></Route>
     			<Route path='/login' exact component={Authentication}></Route>
     			<Route path='/personal' exact component={Personal}></Route>
-				<Route path='/details/:id' exact component={ActivityDetails}></Route>
+				  <Route path='/details/:id' exact component={ActivityDetails}></Route>
     		</BrowserRouter>
     	</Provider>
     )

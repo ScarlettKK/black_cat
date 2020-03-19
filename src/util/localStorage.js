@@ -1,4 +1,3 @@
-const USER_ID = 'id'
 const USER_TOKEN = 'token'
 
 export default {
@@ -17,4 +16,4 @@ export default {
     }
 }
 
-export { USER_ID, USER_TOKEN }
+export { USER_TOKEN }

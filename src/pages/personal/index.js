@@ -16,7 +16,6 @@ import {
 class Personal extends Component {
   render() {
     const { user } = this.props
-    console.log(user)
     return (
     	<PersonalWrapper>
     		<Header></Header>
@@ -44,7 +43,7 @@ class Personal extends Component {
   }
 
   componentDidMount() {
-    this.props.getEvents()
+    this.props.getUser()
   }
 }
 
@@ -53,7 +52,7 @@ const mapState = (state) => ({
 })
 
 const mapDispatch = (dispatch) => ({
-	getEvents(){
+	getUser(){
 		dispatch(() => {
       userApi.getUser().then((res) => {
         if(res) {
