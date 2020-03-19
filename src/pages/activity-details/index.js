@@ -68,7 +68,7 @@ class ActivityDetails extends Component {
   }
 
   componentDidMount() {
-    this.props.getEvent(this.props.match.params.id)
+    eventsApi.getEvent(this.props.match.params.id)
   }
 }
 
@@ -76,23 +76,6 @@ const mapState = (state) => ({
   event: state.getIn(['event', 'event'])
 })
 
-const mapDispatch = (dispatch) => ({
-	getEvent(id){
-		dispatch(() => {
-      eventsApi.getEvent(id).then((res) => {
-        if(res) {
-          const data = res.data;
-          const action = {
-            type: 'set_event',
-            event: data.event
-          }
-          dispatch(action)
-        }
-      })
-    })
-	}
-})
-
-export default connect(mapState, mapDispatch)(ActivityDetails);
+export default connect(mapState)(ActivityDetails);
 
 

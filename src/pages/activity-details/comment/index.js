@@ -38,7 +38,7 @@ class Comments extends Component {
   }
 
   componentDidMount() {
-    this.props.getComments(this.props.id)
+    eventsApi.getEventComments(this.props.id)
   }
 }
 
@@ -46,22 +46,6 @@ const mapState = (state) => ({
   comments: state.getIn(['comments', 'comments'])
 })
 
-const mapDispatch = (dispatch) => ({
-	getComments(id){
-		dispatch(() => {
-      eventsApi.getEventComments(id).then((res) => {
-        if(res) {
-          const data = res.data;
-          const action = {
-            type: 'set_comments',
-            comments: data.comments
-          }
-          dispatch(action)
-        }
-      })
-    })
-  }
-})
-export default connect(mapState, mapDispatch)(Comments);
+export default connect(mapState)(Comments);
 
 

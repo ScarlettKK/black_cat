@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import api from '../../api/authentication'
 import { connect } from 'react-redux'
-import { initUserMessage } from '../../api/encapsulation'
-import localStorage, { USER_TOKEN } from '../../util/localStorage'
 import { LoginWrapper, Mask, TitileBox, LoginBox, Input, Button } from './style'
 
 class Authentication extends Component {
@@ -54,23 +52,7 @@ class Authentication extends Component {
   }
 
   login() {
-    api.login(this.state).then((res) => {
-      const ifSuccess = (res.status === 200)
-      if(ifSuccess) {
-          const result = res.data;
-          const user = result.user;
-          localStorage.set(USER_TOKEN, result.token)
-
-          const action = {
-            type: 'set_login_data',
-            login: true,
-            user: user
-          }
-          this.props.changeUserData(action);
-
-          initUserMessage.set();
-      }
-    })
+    api.login(this.state)
   }
 }
 
@@ -78,11 +60,4 @@ const mapState = (state) => ({
 	  loginStatus: state.getIn(['user', 'login'])
 })
 
-
-const mapDispatch = (dispatch) => ({
-	changeUserData(action){
-		dispatch(action)
-	}
-})
-
-export default connect(mapState, mapDispatch)(Authentication);
+export default connect(mapState)(Authentication);

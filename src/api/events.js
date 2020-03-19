@@ -1,34 +1,80 @@
 import { axios, url } from './encapsulation'
+import store from '../store'
 
 export default {
     getEvents: (eventFilters) => {
-        return axios({
+        axios({
             method: 'get',
             url: url.events(eventFilters)
+        }).then((res) => {
+            const data = res.data;
+            if(data) {
+              const action = {
+                type: 'set_events',
+                events: data.events
+              }
+              store.dispatch(action)
+            }
         })
     },
     getEvent: (id) => {
-        return axios({
+        axios({
             method: 'get',
             url: url.event(id)
+        }).then((res) => {
+            if(res) {
+              const data = res.data;
+              const action = {
+                type: 'set_event',
+                event: data.event
+              }
+              store.dispatch(action)
+            }
         })
     },
     getEventParticipants: (id) => {
-        return axios({
+        axios({
             method: 'get',
             url: url.participants(id)
+        }).then((res) => {
+            if(res) {
+              const data = res.data;
+              const action = {
+                type: 'set_going_participants',
+                going: data.users
+              }
+              store.dispatch(action)
+            }
         })
     },
     getEventLikes: (id) => {
-        return axios({
+        axios({
             method: 'get',
             url: url.likes(id)
+        }).then((res) => {
+            if(res) {
+              const data = res.data;
+              const action = {
+                type: 'set_likes_participants',
+                likes: data.users
+              }
+              store.dispatch(action)
+            }
         })
     },
     getEventComments: (id) => {
-        return axios({
+        axios({
             method: 'get',
             url: url.comments(id)
+        }).then((res) => {
+            if(res) {
+              const data = res.data;
+              const action = {
+                type: 'set_comments',
+                comments: data.comments
+              }
+              store.dispatch(action)
+            }
         })
     }
 }

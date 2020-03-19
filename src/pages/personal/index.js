@@ -43,7 +43,7 @@ class Personal extends Component {
   }
 
   componentDidMount() {
-    this.props.getUser()
+    userApi.getUser()
   }
 }
 
@@ -51,23 +51,5 @@ const mapState = (state) => ({
   user: state.getIn(['user', 'user'])
 })
 
-const mapDispatch = (dispatch) => ({
-	getUser(){
-		dispatch(() => {
-      userApi.getUser().then((res) => {
-        if(res) {
-          const data = res.data;
-          const action = {
-            type: 'set_login_data',
-            login: true,
-            user: data
-          }
-          dispatch(action)
-        }
-      })
-    })
-	}
-})
-
-export default connect(mapState, mapDispatch)(Personal);
+export default connect(mapState)(Personal);
 

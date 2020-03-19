@@ -41,8 +41,8 @@ class Participants extends Component {
   }
 
   componentDidMount() {
-    this.props.getParticipants(this.props.id)
-    this.props.getLikes(this.props.id)
+    eventsApi.getEventParticipants(this.props.id)
+    eventsApi.getEventLikes(this.props.id)
   }
 }
 
@@ -51,37 +51,6 @@ const mapState = (state) => ({
   likes: state.getIn(['participants', 'likes'])
 })
 
-const mapDispatch = (dispatch) => ({
-	getParticipants(id){
-		dispatch(() => {
-      eventsApi.getEventParticipants(id).then((res) => {
-        if(res) {
-          const data = res.data;
-          const action = {
-            type: 'set_going_participants',
-            going: data.users
-          }
-          dispatch(action)
-        }
-      })
-    })
-  },
-  getLikes(id){
-		dispatch(() => {
-      eventsApi.getEventLikes(id).then((res) => {
-        if(res) {
-          const data = res.data;
-          const action = {
-            type: 'set_likes_participants',
-            likes: data.users
-          }
-          dispatch(action)
-        }
-      })
-    })
-	}
-})
-
-export default connect(mapState, mapDispatch)(Participants);
+export default connect(mapState)(Participants);
 
 

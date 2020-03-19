@@ -27,7 +27,7 @@ class ActivityList extends Component {
     )
   }
   componentDidMount() {
-    this.props.getEvents()
+    eventsApi.getEvents()
   }
 }
 
@@ -36,23 +36,6 @@ const mapState = (state) => ({
   events: state.getIn(['events', 'events'])
 })
 
-const mapDispatch = (dispatch) => ({
-	getEvents(){
-		dispatch(() => {
-      eventsApi.getEvents().then((res) => {
-        const data = res.data;
-        if(data) {
-          const action = {
-            type: 'set_events',
-            events: data.events
-          }
-          dispatch(action)
-        }
-      })
-    })
-	}
-})
-
-export default connect(mapState, mapDispatch)(ActivityList);
+export default connect(mapState)(ActivityList);
 
 
