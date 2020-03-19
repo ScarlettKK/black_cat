@@ -10,7 +10,6 @@ class Participants extends Component {
     const { going, likes } = this.props;
     const goingNum = going.length || 0;
     const likesNum = likes.length || 0;
-    console.log(goingNum, likesNum, going)
     return (
         <ParticipantsWrapper>
           <ParticipantsContent>

@@ -45,7 +45,7 @@ class ActivityDetails extends Component {
                 <Participants id={event.id}></Participants>
               </div>
               <div>
-                <Comments></Comments>
+                <Comments id={event.id}></Comments>
               </div>
             </Tabs>
           </ActivityDetailsContent>

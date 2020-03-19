@@ -24,5 +24,11 @@ export default {
             method: 'get',
             url: url.likes(id)
         })
+    },
+    getEventComments: (id) => {
+        return axios({
+            method: 'get',
+            url: url.comments(id)
+        })
     }
 }
