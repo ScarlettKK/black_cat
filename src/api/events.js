@@ -7,8 +7,8 @@ export default {
             method: 'get',
             url: url.events(eventFilters)
         }).then((res) => {
-            const data = res.data;
-            if(data) {
+            if(res) {
+              const data = res.data;
               const action = {
                 type: 'set_events',
                 events: data.events

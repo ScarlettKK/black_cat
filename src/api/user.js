@@ -17,5 +17,13 @@ export default {
               store.dispatch(action)
             }
         })
-    }
+    },
+    getUserEvents: (queryFilters) => {
+      axios({
+          method: 'get',
+          url: url.userEvents(queryFilters)
+      }).then((res) => {
+          console.log(res)
+      })
+  }
 }

@@ -1,7 +1,15 @@
+/*
+ * @Author: your name
+ * @Date: 2020-03-19 17:59:57
+ * @LastEditTime: 2020-03-20 10:58:19
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /black_cat/src/pages/personal/style.js
+ */
 import styled from 'styled-components';
 
 export const PersonalWrapper = styled.div`
-
+    overflow-x: hidden;
 `;
 
 export const PersonalMessage = styled.div`
@@ -33,3 +41,5 @@ export const Email = styled.p`
     margin: 10px;
 `;
 
+export const PersonalActivity = styled.div`
+`;

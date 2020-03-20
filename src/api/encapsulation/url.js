@@ -2,8 +2,14 @@ const baseUrl = '/api/v1'
 const baseUrl_events = `${baseUrl}/events`
 const baseUrl_user = `${baseUrl}/user`
 
-function generateQueryString () {
-    console.log('generateQueryString')
+function generateQueryString (params) {////////////////
+    let qs = '';
+
+    Object.entries(params).forEach((p) => {
+        qs += `${ p[0] }=${ p[1] }&`;
+    });
+
+    return qs.slice(0, -1);
 }
 
 export default {
@@ -37,7 +43,7 @@ export default {
     user() {
         return `${baseUrl_user}`
     },
-    userEvents() {
-        return `${baseUrl_user}/events`
+    userEvents(queryFilters) {
+        return `${baseUrl_user}/events${queryFilters ? `?${generateQueryString(queryFilters)}` : ``}`
     }
 }
