@@ -1,8 +1,20 @@
-/*
- * @Author: your name
- * @Date: 2020-03-14 11:06:46
- * @LastEditTime: 2020-03-14 11:06:46
- * @LastEditors: Please set LastEditors
- * @Description: In User Settings Edit
- * @FilePath: /black_cat/src/api/channels.js
- */
+import { axios, url } from './encapsulation'
+import store from '../store'
+
+export default {
+    getChannels: () => {
+        axios({
+            method: 'get',
+            url: url.channels()
+        }).then((res) => {
+            if(res) {
+              const data = res.data;
+              const action = {
+                type: 'set_channels',
+                channels: data.channels
+              }
+              store.dispatch(action)
+            }
+        })
+    }
+}

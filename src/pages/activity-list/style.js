@@ -5,7 +5,7 @@ export const ActivityListWrapper = styled.div`
         left: 0px;
     }
     .searchOpenedList{
-        margin-left: 80%;
+        margin-left: 75%;
     }
 `;
 
