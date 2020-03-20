@@ -18,6 +18,7 @@ import Tabs from '../../components/tabs'
 import Details from './details'
 import Comments from './comment'
 import Participants from './participants'
+import time from '../../util/time'
 
 class ActivityDetails extends Component {
   render() {
@@ -33,7 +34,7 @@ class ActivityDetails extends Component {
               <Avatar imgUrl={event.creator.avatar}/>
               <CreateMessage>
                 <p className="userName">{event.creator.username}</p>
-                <p className="createTime">Published {event.create_time} ago</p>
+                <p className="createTime">Published {time.getDiff(event.create_time)} ago</p>
               </CreateMessage>
             </ActivityCreatorMessage>
           </ActivityDetailsHeader>
