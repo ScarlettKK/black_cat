@@ -11,14 +11,15 @@ import {
   ChannelNameWrapper,
   Like,
   Going,
-  UnGoUnLike
+  UnGoUnLike,
+  GoLike
 } from './style'
 import Avatar from '../avatar'
 import ChannelName from '../channel-name'
 import likeOutlineSvg from '../../static/svg/like-outline.svg'
-// import LikeSvg from '../../static/svg/like.svg'
+import LikeSvg from '../../static/svg/like.svg'
 import checkOutlineSvg from '../../static/svg/check-outline.svg'
-// import checkSvg from '../../static/svg/check.svg'
+import checkSvg from '../../static/svg/check.svg'
 import timeSvg from '../../static/svg/time.svg'
 import time from '../../util/time'
 
@@ -45,8 +46,11 @@ class ActivityItem extends Component {
         <ActivityFooter>
           <Going>
             {
-              event.me_going ? 
-              'I am going!' 
+              event.me_going ?
+              <GoLike>
+                <SVG src={checkSvg}/>
+                I am going! 
+              </GoLike>
               : 
               <UnGoUnLike>
                 <SVG src={checkOutlineSvg}/>
@@ -56,7 +60,11 @@ class ActivityItem extends Component {
           </Going>
           <Like>
             {
-              event.me_likes ? 'I like it' 
+              event.me_likes ? 
+              <GoLike>
+                <SVG src={LikeSvg}/>
+                I like it
+              </GoLike>
               : 
               <UnGoUnLike>
                 <SVG src={likeOutlineSvg}/>

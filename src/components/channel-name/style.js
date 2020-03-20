@@ -7,5 +7,5 @@ export const ChannelNameWrapper = styled.div`
     border: 1px solid #D3C1E5;
     display: inline-block;
     padding: 1px 10px;
-    border-radius: 10px;
+    border-radius: 12px;
 `;

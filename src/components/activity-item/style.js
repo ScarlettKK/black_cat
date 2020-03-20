@@ -64,11 +64,16 @@ export const ActivityFooter = styled.div`
 `;
 
 export const Going = styled.span`
-	
+	svg {
+		fill: #AECB4F;
+	}
 `;
 
 export const Like = styled.span`
 	margin-left: 30px;
+	svg {
+		fill: #FF5C5C;
+	}
 `;
 
 export const UnGoUnLike = styled.span`
@@ -77,6 +82,17 @@ export const UnGoUnLike = styled.span`
 		width: 13px;
 		height: 13px;
 		fill: #AC8EC9;
+		position: relative;
+		top: 2px;
+		margin-right: 5px;
+	}
+`;
+
+export const GoLike = styled.span`
+	color: #453257;
+	svg {
+		width: 13px;
+		height: 13px;
 		position: relative;
 		top: 2px;
 		margin-right: 5px;
