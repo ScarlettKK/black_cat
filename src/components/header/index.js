@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux'
+import SVG from 'react-inlinesvg';
 
 import { HeaderWrapper, SearchButton, Logo, AvatarWrapper } from './style'
 import logoImg from '../../static/svg/logo-cat.svg'
+import searchLogo from '../../static/svg/search.svg'
+import homeLogo from '../../static/svg/home.svg'
 import Avatar from '../avatar'
 
 class Header extends Component {
@@ -14,13 +17,20 @@ class Header extends Component {
     	<HeaderWrapper>
         {
           containSearch === 'true' ?
-          <SearchButton onClick={searchClick}/> :
+          (<SearchButton onClick={searchClick}>
+            <SVG src={searchLogo} />
+          </SearchButton>) 
+          :
           (<Link to='/'>
-            home
+            <SearchButton>
+              <SVG src={homeLogo} />
+            </SearchButton>
           </Link>)
         }
     		
-        <Logo src={logoImg}/>
+        <Logo>
+          <SVG src={logoImg}/>
+        </Logo>
        
         <AvatarWrapper>
           <Link to='/personal'>

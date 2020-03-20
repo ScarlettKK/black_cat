@@ -15,8 +15,8 @@ import channelsApi from '../../../api/channels'
 class Search extends Component {
   render() {
     const { isSearch, channels } = this.props;
-    console.log(channels)
     const dates = ['ANYTIME', 'TODAY', 'TOMORROW', 'THIS WEEK', 'THIS MONTH', 'LATER']
+    
     return (
         <SearchWrapper className = {isSearch ? 'searchOpened' : ''}>
             <DateWrapper>
@@ -37,9 +37,9 @@ class Search extends Component {
                 </Header>
                 <div className="channelBtns">
                     {
-                        channels.map((channel) => {
-                            return <ChannelBtns>{channel.name}</ChannelBtns>
-                        })
+                        channels.length ? channels.map((channel) => {
+                            return <ChannelBtns key={channel.id}>{channel.name}</ChannelBtns>
+                        }) : ''
                     }
                 </div>
             </ChannelWrapper>
