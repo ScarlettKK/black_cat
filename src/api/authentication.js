@@ -1,6 +1,6 @@
 import { axios, url } from './encapsulation'
 import store from '../store'
-import { initUserMessage } from './encapsulation'
+import { initUserMessage, history } from './encapsulation'
 import localStorage, { USER_TOKEN } from '../util/localStorage'
 
 export default {
@@ -31,6 +31,8 @@ export default {
                 store.dispatch(action);
       
                 initUserMessage.set();
+                
+                history.push('/');
             }
         })
     },

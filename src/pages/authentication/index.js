@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux'
 import SVG from 'react-inlinesvg';
 
@@ -20,40 +19,35 @@ class Authentication extends Component {
   }
 
   render() {
-    const { loginStatus } = this.props;
-    if(!loginStatus) {
-      return (
-        <LoginWrapper>
-          <Mask/>
-          <TitileBox>
-            <p>FIND THE MOST LOVED ACTIVITIES</p>
-            <h1>BLACK CAT</h1>
-            <span className="circle-outer">
-              <span className="circle-inner">
-                <SVG src={logoImg}/>
-              </span>
+    return (
+      <LoginWrapper>
+        <Mask/>
+        <TitileBox>
+          <p>FIND THE MOST LOVED ACTIVITIES</p>
+          <h1>BLACK CAT</h1>
+          <span className="circle-outer">
+            <span className="circle-inner">
+              <SVG src={logoImg}/>
             </span>
-          </TitileBox>
-          <LoginBox>
-            <SVG src={userImg} className="user"/>
-            <Input 
-              value={this.state.username}
-              onChange={this.handleInputChange.bind(this, 'username')}
-              placeholder="User Name"
-            />
-            <SVG src={passwordImg}/>
-            <Input
-              value={this.state.password}
-              onChange={this.handleInputChange.bind(this, 'password')}
-              placeholder="Password"
-            />
-            <Button onClick={this.login.bind(this)}>SIGN IN</Button>
-          </LoginBox>
-        </LoginWrapper>
-      )
-    } else {
-      return <Redirect to='/'/>
-    }
+          </span>
+        </TitileBox>
+        <LoginBox>
+          <SVG src={userImg} className="user"/>
+          <Input 
+            value={this.state.username}
+            onChange={this.handleInputChange.bind(this, 'username')}
+            placeholder="User Name"
+          />
+          <SVG src={passwordImg}/>
+          <Input
+            value={this.state.password}
+            onChange={this.handleInputChange.bind(this, 'password')}
+            placeholder="Password"
+          />
+          <Button onClick={this.login.bind(this)}>SIGN IN</Button>
+        </LoginBox>
+      </LoginWrapper>
+    )
   }
 
   handleInputChange(type, event) {
@@ -67,8 +61,4 @@ class Authentication extends Component {
   }
 }
 
-const mapState = (state) => ({
-	  loginStatus: state.getIn(['user', 'login'])
-})
-
-export default connect(mapState)(Authentication);
+export default Authentication;
