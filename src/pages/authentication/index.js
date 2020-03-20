@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux'
 import SVG from 'react-inlinesvg';
 
 import api from '../../api/authentication'
@@ -43,6 +42,7 @@ class Authentication extends Component {
             value={this.state.password}
             onChange={this.handleInputChange.bind(this, 'password')}
             placeholder="Password"
+            type="password"
           />
           <Button onClick={this.login.bind(this)}>SIGN IN</Button>
         </LoginBox>

@@ -37,6 +37,14 @@ export const ActivityTitle = styled.h1`
 export const ActivityTime = styled.p`
 	color: #8560A9;
 	font-size: 12px;
+	svg{
+		width: 13px;
+		height: 13px;
+		fill: #8560A9;
+		position: relative;
+		top: 1.5px;
+		margin-right: 5px;
+	}
 `;
 
 export const ActivityContent = styled.p`
@@ -61,4 +69,16 @@ export const Going = styled.span`
 
 export const Like = styled.span`
 	margin-left: 30px;
+`;
+
+export const UnGoUnLike = styled.span`
+	color: #AC8EC9;
+	svg {
+		width: 13px;
+		height: 13px;
+		fill: #AC8EC9;
+		position: relative;
+		top: 2px;
+		margin-right: 5px;
+	}
 `;

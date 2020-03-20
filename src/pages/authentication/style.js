@@ -91,8 +91,8 @@ export const Input = styled.input`
 	width: 240px;
 	height: 40px;
     line-height: 40px;
-    border-radius: 20px;
-    background-color: rgba(0, 0, 0, 0);
+    border-radius: 23px;
+    background-color: transparent;
     border:1.3px solid rgba(255, 255, 255, 0.5);
     padding-left: 35px;
     color: #453257;
@@ -102,6 +102,13 @@ export const Input = styled.input`
     :focus{
         background-color: rgba(211, 193, 229, 0.5);
         color: #453257;
+    }
+    :-webkit-autofill , textarea:-webkit-autofill, select:-webkit-autofill {
+        -webkit-text-fill-color: #ededed !important;
+        -webkit-box-shadow: 0 0 0px 1000px transparent  inset !important;
+        background-color:transparent;
+        background-image: none;
+        transition: background-color 50000s ease-in-out 0s;
     }
 `;
 
