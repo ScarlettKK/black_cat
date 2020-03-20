@@ -8,14 +8,20 @@ import Avatar from '../avatar'
 
 class Header extends Component {
   render() {
-    const { user } = this.props
+    const { user, containSearch, searchClick } = this.props
+
     return (
     	<HeaderWrapper>
-    		<SearchButton>
-        </SearchButton>
-        <Link to='/'>
-          <Logo src={logoImg}/>
-        </Link>
+        {
+          containSearch === 'true' ?
+          <SearchButton onClick={searchClick}/> :
+          (<Link to='/'>
+            home
+          </Link>)
+        }
+    		
+        <Logo src={logoImg}/>
+       
         <AvatarWrapper>
           <Link to='/personal'>
             <Avatar imgUrl={user.avatar}/>
