@@ -7,6 +7,10 @@ import Avatar from '../../components/avatar'
 import Tabs from '../../components/tabs'
 import NoActivity from '../../components/no-activity'
 
+import Likes from './likes'
+import Going from './going'
+import Past from './past'
+
 import { 
   PersonalWrapper, 
   PersonalMessage,
@@ -29,13 +33,14 @@ class Personal extends Component {
         <Tabs contents={[`${user.likes_count} Likes`,
           `${user.goings_count} Going`,
           `${user.past_count} Past`]}
+          isSwitch={true}
         >
           <PersonalActivity>
             {
               user.likes_count < 1 ?
               <NoActivity/>
               :
-              <div>Likes</div> // 获取到Activity后，展示循环activity-item 组件即可
+              <Likes/>
             }
           </PersonalActivity>
           <PersonalActivity>
@@ -43,7 +48,7 @@ class Personal extends Component {
               user.goings_count < 1 ?
               <NoActivity/>
               :
-              <div>Going</div>
+              <Going/>
             }
           </PersonalActivity>
           <PersonalActivity>
@@ -51,7 +56,7 @@ class Personal extends Component {
               user.past_count < 1 ?
               <NoActivity/>
               :
-              <div>Past</div>
+              <Past/>
             }
           </PersonalActivity>
         </Tabs>
@@ -61,7 +66,6 @@ class Personal extends Component {
 
   componentDidMount() {
     userApi.getUser();
-    userApi.getUserEvents({type:'liked'});
   }
 }
 

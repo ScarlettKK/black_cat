@@ -19,11 +19,19 @@ export default {
         })
     },
     getUserEvents: (queryFilters) => {
+      const type = queryFilters.type;
       axios({
           method: 'get',
           url: url.userEvents(queryFilters)
       }).then((res) => {
-          console.log(res)
+          if(res) {
+            const data = res.data;
+            let action = {
+              type: 'set_user_' + type
+            }
+            action[type] = data.events
+            store.dispatch(action)
+          }
       })
   }
 }

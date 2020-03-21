@@ -6,6 +6,12 @@ export const NoActivityWrapper = styled.div`
     text-align: center;
     font-size: 14px;
     color: #BABABA;
-    line-height: 400px;
+    padding-top: 100px;
+    line-height: 30px;
+    svg{
+        height: 60px;
+        width: 60px;
+        fill: #D3C1E5;
+    }
 `;
 
