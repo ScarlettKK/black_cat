@@ -31,9 +31,6 @@ export default {
     participants(event_id) {
         return `${baseUrl_events}/${event_id}/participants`
     },
-    participate(event_id){
-        return `${baseUrl_events}/${event_id}/d`
-    },
     comments(event_id) {
         return `${baseUrl_events}/${event_id}/comments`
     },

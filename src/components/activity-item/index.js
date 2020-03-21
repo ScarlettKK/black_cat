@@ -27,7 +27,6 @@ import time from '../../util/time'
 class ActivityItem extends Component {
   render() {
     const { event } = this.props
-    console.log(event)
     return (
     	<ActivityItemWrapper>
     		<ActivityHeader>
