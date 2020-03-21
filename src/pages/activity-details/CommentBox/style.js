@@ -24,12 +24,13 @@ export const Purple = styled.div`
         width: calc(100% - 90px);
         height: 32px;
         position: relative;
-        top: -10px;
+        top: -9px;
         border-radius: 18px;
         border: none;
         padding-left: 16px;
         font-size: 14px;
         color: #D3C1E5;
+        left: -3px;
     }
 `;
 

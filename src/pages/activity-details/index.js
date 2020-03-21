@@ -26,7 +26,7 @@ class ActivityDetails extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isComment : true
+      isComment : false
     }
   }
 
@@ -63,7 +63,7 @@ class ActivityDetails extends Component {
           </ActivityDetailsContent>
           {
             this.state.isComment ? 
-            <CommentBox closeComment={this.closeComment.bind(this)}/>
+            <CommentBox closeComment={this.closeComment.bind(this)}  id={event.id}/>
             :
             <ActivityButtons event={event} id={id} comment={this.startComment.bind(this)}/>
           }

@@ -111,17 +111,27 @@ class Events{
           method: 'get',
           url: url.comments(id)
       }).then((res) => {
-          if(res) {
-            const data = res.data;
-            const action = {
-              type: 'set_comments',
-              comments: data.comments
-            }
-            store.dispatch(action)
+        if(res) {
+          const data = res.data;
+          const action = {
+            type: 'set_comments',
+            comments: data.comments
           }
-      })
+          store.dispatch(action)
+        }
+    })
   }
-  
+  addComment (id, comment) {
+    axios({
+      method: 'post',
+      url: url.comments(id),
+      data: comment
+    }).then((res) => {
+      if(res) {
+        this.getEventComments(id)
+      }
+    })
+  }
 }
 
 export default new Events();
