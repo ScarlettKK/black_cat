@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import SVG from 'react-inlinesvg';
 
 import eventsApi from '../../api/events'
 import Header from '../../components/header'
@@ -10,8 +9,7 @@ import {
   ActivityDetailsContent,
   ActivityDetailsTitile,
   ActivityCreatorMessage,
-  CreateMessage,
-  ActivityButtons
+  CreateMessage
 } from './style'
 import ChannelName from '../../components/channel-name'
 import Avatar from '../../components/avatar'
@@ -20,16 +18,21 @@ import Details from './details'
 import Comments from './comment'
 import Participants from './participants'
 import time from '../../util/time'
-
-import likeOutlineSvg from '../../static/svg/like-outline.svg'
-import LikeSvg from '../../static/svg/like.svg'
-import checkOutlineSvg from '../../static/svg/check-outline.svg'
-import checkSvg from '../../static/svg/check.svg'
-import commentSvg from '../../static/svg/comment-single.svg'
+import NoActivity from '../../components/no-activity'
+import ActivityButtons from './ActivityButtons'
+import CommentBox from './CommentBox'
 
 class ActivityDetails extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isComment : true
+    }
+  }
+
   render() {
     const { event } = this.props || {};
+    const id = this.props.match.params.id;
     if(event.name) {
       return (
         <ActivityDetailsWrapper>
@@ -54,48 +57,21 @@ class ActivityDetails extends Component {
                 <Participants id={event.id}></Participants>
               </div>
               <div>
-                <Comments id={event.id}></Comments>
+                <Comments id={event.id} isComment={this.isComment}></Comments>
               </div>
             </Tabs>
           </ActivityDetailsContent>
-          <ActivityButtons>
-            <button className="purple">
-              <SVG src={commentSvg}/>
-            </button>
-            <button className="purple" onClick={this.likes.bind(this, event.me_likes)}>
-              {
-                event.me_likes ? 
-                <span>
-                  <SVG src={LikeSvg} className="liked"/>
-                </span>
-                : 
-                <span>
-                  <SVG src={likeOutlineSvg}/>
-                </span>
-              }
-            </button>
-            <button className="yellow" onClick={this.participate.bind(this, event.me_going)}>
-              {
-                event.me_going ?
-                <span>
-                  <SVG src={checkSvg} className="joined"/>
-                  <span className="btnText">I am going! </span>
-                </span>
-                : 
-                <span>
-                  <SVG src={checkOutlineSvg}/>
-                  <span className="btnText">Join</span>
-                </span>
-              }
-            </button>
-          </ActivityButtons>
+          {
+            this.state.isComment ? 
+            <CommentBox closeComment={this.closeComment.bind(this)}/>
+            :
+            <ActivityButtons event={event} id={id} comment={this.startComment.bind(this)}/>
+          }
         </ActivityDetailsWrapper>
       )
     } else {
       return (
-        <div>
-          No data
-        </div>
+        <NoActivity/>
       )
     }
     
@@ -105,19 +81,22 @@ class ActivityDetails extends Component {
     eventsApi.getEvent(this.props.match.params.id)
   }
 
-  participate(me_going) {
-    if(me_going) 
-      eventsApi.deleteParticipants(this.props.match.params.id)
-    else 
-      eventsApi.addParticipants(this.props.match.params.id)
+  startComment() {
+    this.setState(() => {
+      return {
+        isComment: true
+      }
+    })
   }
 
-  likes(me_likes) {
-    if(me_likes) 
-      eventsApi.deleteLikes(this.props.match.params.id)
-    else 
-      eventsApi.addLikes(this.props.match.params.id)
+  closeComment() {
+    this.setState(() => {
+      return {
+        isComment: false
+      }
+    })
   }
+  
 }
 
 const mapState = (state) => ({
