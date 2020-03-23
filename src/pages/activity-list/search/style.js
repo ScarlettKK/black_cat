@@ -96,7 +96,7 @@ export const SearchResultWrapper = styled.div`
     width: 100%;
     height: 80px;
     background-color: #FAF9FC;
-    padding: 0px 40px;
+    padding: 0px 35px;
 `;
 
 export const SearchResultCount = styled.h1`

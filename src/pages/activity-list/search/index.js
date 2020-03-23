@@ -127,6 +127,7 @@ class Search extends Component {
     eventsApi.getEvents({
       channels: this.state.channel.id
     })
+    this.props.setSearchContent(this.state.searchValue)
   }
 }
 
@@ -134,6 +135,15 @@ const mapState = (state) => ({
     channels: state.getIn(['channels', 'channels'])
 })
 
-export default connect(mapState)(Search);
+const mapDispatch = (dispatch) => ({
+	setSearchContent(searchValue) {
+		dispatch({
+      type: 'set_search_content',
+      searchValue: searchValue
+    });
+	}
+});
+
+export default connect(mapState, mapDispatch)(Search);
 
 

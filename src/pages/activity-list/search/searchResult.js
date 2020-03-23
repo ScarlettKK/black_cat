@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
 
 import { 
     SearchResultWrapper,
@@ -9,15 +10,22 @@ import {
 
 class SearchResult extends Component {
   render() {
+    const { events, searchValue } = this.props;
+    const resultNumber = events.length;
     return (
         <SearchResultWrapper>
-            <SearchResultCount>14 Results</SearchResultCount>
-            <SearchContent>Searched for Channel</SearchContent>
+            <SearchResultCount>{resultNumber} Results</SearchResultCount>
+            <SearchContent>Searched for {searchValue}</SearchContent>
             <ClearSearch>CLEAR SEARCH</ClearSearch>
         </SearchResultWrapper>)
   }
 }
 
-export default SearchResult;
+const mapState = (state) => ({
+    events: state.getIn(['events', 'events']),
+    searchValue: state.getIn(['events', 'searchValue'])
+})
+
+export default connect(mapState)(SearchResult);
 
 

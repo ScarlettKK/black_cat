@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import eventsApi from '../../../api/events'
 import ActivityItem from '../../../components/activity-item'
 import { ActivityListBody } from './style'
-import noActivity from '../../../components/no-activity'
+import NoActivity from '../../../components/no-activity'
 
 class List extends Component {
   render() {
@@ -21,7 +21,7 @@ class List extends Component {
               )
             })
             :
-            <noActivity/>
+            <NoActivity/>
           }
         </ActivityListBody>
     )
