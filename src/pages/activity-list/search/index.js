@@ -13,6 +13,7 @@ import {
  } from './style'
 import channelsApi from '../../../api/channels'
 import eventsApi from '../../../api/events'
+import time from '../../../util/time'
 
 class Search extends Component {
   constructor(props) {
@@ -23,7 +24,7 @@ class Search extends Component {
         name: ''
       },
       channel: {
-        id: '',
+        value: '',
         name: ''
       },
       canStartSearch: false,
@@ -47,7 +48,7 @@ class Search extends Component {
                             return <DateBtns 
                                     key={index} 
                                     className={this.state.date.name === date ? 'selected' : ''}
-                                    onClick={this.select.bind(this, 'date', date, 'xxx')}
+                                    onClick={this.select.bind(this, 'date', date)}
                                   >{date}</DateBtns>
                         })
                     }
@@ -90,12 +91,16 @@ class Search extends Component {
     channelsApi.getChannels()
   }
 
-  select(type, value, id) {
+  select(type, name, value) {
     const newState = {};
     newState[type] = {
-      name: value,
-      id: id
+      name: name,
+      value: type === 'channel' ? value : this.createTimeValue(name)
     };
+    this.setSelectedState(newState)
+  }
+
+  setSelectedState(newState) {
     this.setState(newState, () => {
       const { date, channel } = this.state
       if(date.name.length > 0 && channel.name.length > 0) {
@@ -120,19 +125,36 @@ class Search extends Component {
       return `${channelName} activities of ${dateName.toLowerCase()}`
   }
 
-  createTimeValue() {
-
+  createTimeValue(timeType) {
+    if(timeType === 'LATER')
+      return {before: 1587548461913, after: 1584956461913}
+    else if(timeType === 'ANYTIME')
+      return ''
+    else 
+      return time.getTimeFilter(timeType.toLowerCase())
   }
 
   sendSearchRequest() {
     const { setSearchContent, setIsSearch } = this.props;
-    eventsApi.getEvents({
-      channels: this.state.channel.id
-    }).then(() => {
+    eventsApi.getEvents(this.getEventsApiFilter()).then(() => {
       setSearchContent(this.state.searchValue)
       setIsSearch()
       this.props.showActivitySearch()
     })
+  }
+
+  getEventsApiFilter() {
+    const result = {}
+    const { channel, date }  = this.state;
+
+    if(channel.value !== '')
+      result.channels = channel.value;
+    if(date.value !== '') {
+      result.before = date.value.before
+      result.after = date.value.after
+    }
+    
+    return result;
   }
 }
 
