@@ -34,6 +34,7 @@ class Search extends Component {
   render() {
     const { isSearch, channels } = this.props;
     const dates = ['ANYTIME', 'TODAY', 'TOMORROW', 'THIS WEEK', 'THIS MONTH', 'LATER']
+
     return (
         <SearchWrapper className = {isSearch ? 'searchOpened' : ''}>
             <DateWrapper>
@@ -59,7 +60,7 @@ class Search extends Component {
                 <div className="channelBtns">
                   <ChannelBtns    
                     className={this.state.channel.name === 'ALL' ? 'selected' : ''}
-                    onClick={this.select.bind(this, 'channel', 'ALL')}
+                    onClick={this.select.bind(this, 'channel', 'ALL', '')}
                   >ALL</ChannelBtns>
                   {
                       channels.length ? channels.map((channel) => {
@@ -124,10 +125,14 @@ class Search extends Component {
   }
 
   sendSearchRequest() {
+    const { setSearchContent, setIsSearch } = this.props;
     eventsApi.getEvents({
       channels: this.state.channel.id
+    }).then(() => {
+      setSearchContent(this.state.searchValue)
+      setIsSearch()
+      this.props.showActivitySearch()
     })
-    this.props.setSearchContent(this.state.searchValue)
   }
 }
 
@@ -141,7 +146,13 @@ const mapDispatch = (dispatch) => ({
       type: 'set_search_content',
       searchValue: searchValue
     });
-	}
+  },
+  setIsSearch() {
+    dispatch({
+      type: 'set_isSearch',
+      isSearch: true
+    });
+  }
 });
 
 export default connect(mapState, mapDispatch)(Search);

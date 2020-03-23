@@ -22,7 +22,7 @@ class ActivityList extends Component {
           <SearchResult/>
           <List/> 
         </ActivityListContent>
-        <Search isSearch={this.state.isSearch}/>
+        <Search isSearch={this.state.isSearch} showActivitySearch={this.showActivitySearch.bind(this)}/>
       </ActivityListWrapper>
     )
   }

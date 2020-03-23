@@ -9,9 +9,9 @@ import NoActivity from '../../../components/no-activity'
 
 class List extends Component {
   render() {
-    const { events } = this.props;
+    const { events, isSearch } = this.props;
     return (
-        <ActivityListBody className="startSearch">
+        <ActivityListBody className={ isSearch? 'startSearch' : ''}>
           {
             events.length > 0 ? events.map((event) => {
               return (
@@ -33,7 +33,8 @@ class List extends Component {
 
 const mapState = (state) => ({
   loginStatus: state.getIn(['user', 'login']),
-  events: state.getIn(['events', 'events'])
+  events: state.getIn(['events', 'events']),
+  isSearch: state.getIn(['events', 'isSearch'])
 })
 
 export default connect(mapState)(List);

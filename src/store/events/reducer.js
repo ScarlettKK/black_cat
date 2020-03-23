@@ -2,7 +2,8 @@ import { fromJS } from 'immutable';
 
 const defaultEvents = fromJS({
 	events: [],
-	searchValue: ''
+	searchValue: '',
+	isSearch: false
 })
 
 export default (state = defaultEvents, action) => {
@@ -14,6 +15,10 @@ export default (state = defaultEvents, action) => {
 		case 'set_search_content':
 			return state.merge({
                 searchValue: action.searchValue
+			})
+		case 'set_isSearch':
+			return state.merge({
+                isSearch: action.isSearch
 			})
 		default:
 			return state;

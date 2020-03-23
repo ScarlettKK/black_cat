@@ -3,7 +3,7 @@ import store from '../store'
 
 class Events{
   getEvents (eventFilters) {
-      axios({
+      return axios({
           method: 'get',
           url: url.events(eventFilters)
       }).then((res) => {
@@ -15,6 +15,7 @@ class Events{
             }
             store.dispatch(action)
           }
+          return res;
       })
   }
   getEvent (id) {
