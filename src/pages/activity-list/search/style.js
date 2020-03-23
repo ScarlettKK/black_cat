@@ -7,20 +7,35 @@ export const SearchWrapper = styled.div`
     background-color: #453257;
     left: -75%;
     transition: left 0.5s;  
-`;
+    .selected {
+        background-color: #E5F7A9;
+        color: #453257;
+        border-radius: 15px;
+        padding: 5px 10px;
+    }
+    .canStartSearch {
+        background-color: #D5EF7F;
+        color: #453257;
+        span{
+            margin-top: 15px;
+            display: inline-block;
+        }
+    }
+`
 
 export const DateWrapper = styled.div`
     width: 100%;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     .dateBtns {
-        padding: 0px 10px;
+        padding: 0px 5px;
     }
 `;
 
 export const DateBtns = styled.button`
     color: #E8E8E8;
     font-size: 14px;
-    margin: 5px 5px 15px 0px;
+    margin: 5px 2px;;
+    padding: 5px 10px;
 `;
 
 export const ChannelWrapper = styled.div`
@@ -56,12 +71,20 @@ export const Header = styled.h1`
 export const SearchBtnWrapper = styled.div`
     width: 100%; 
     height: 70px;
-    background-color: #D5EF7F;
+    background-color: #BABABA;
     position: absolute;
     bottom: 0px;
     font-size: 18px;
-    color: #453257;
+    color: #666666;
     font-weight: bold;  
-    text-align: center;
-    line-height: 70px; 
+    text-align: center; 
+    span{
+        margin-top: 23px;
+        display: inline-block;
+    }
+`;
+
+export const SearchValue = styled.div`
+    font-size: 10px;
+    color: #8560A9;
 `;
