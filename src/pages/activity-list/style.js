@@ -7,6 +7,9 @@ export const ActivityListWrapper = styled.div`
     .searchOpenedList{
         margin-left: 75%;
     }
+    .startSearch {
+        top: 130px;
+    }
 `;
 
 export const ActivityListContent = styled.div`

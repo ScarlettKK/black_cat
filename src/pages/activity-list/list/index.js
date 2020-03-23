@@ -5,20 +5,23 @@ import { Link } from 'react-router-dom'
 import eventsApi from '../../../api/events'
 import ActivityItem from '../../../components/activity-item'
 import { ActivityListBody } from './style'
+import noActivity from '../../../components/no-activity'
 
 class List extends Component {
   render() {
     const { events } = this.props;
     return (
-        <ActivityListBody>
+        <ActivityListBody className="startSearch">
           {
-            events.map((event) => {
+            events.length > 0 ? events.map((event) => {
               return (
                 <Link key={event.id} to={'/details/' + event.id} className="resetLinkAtyle">
                   <ActivityItem event={event} key={event.id}/>
                 </Link>
               )
             })
+            :
+            <noActivity/>
           }
         </ActivityListBody>
     )

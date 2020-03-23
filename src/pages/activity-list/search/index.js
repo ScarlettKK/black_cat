@@ -12,13 +12,20 @@ import {
     SearchValue
  } from './style'
 import channelsApi from '../../../api/channels'
+import eventsApi from '../../../api/events'
 
 class Search extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      date: '',
-      channel: '',
+      date: {
+        value: '',
+        name: ''
+      },
+      channel: {
+        id: '',
+        name: ''
+      },
       canStartSearch: false,
       searchValue: ''
     }
@@ -38,8 +45,8 @@ class Search extends Component {
                         dates.map((date, index) => {
                             return <DateBtns 
                                     key={index} 
-                                    className={this.state.date === date ? 'selected' : ''}
-                                    onClick={this.select.bind(this, 'date', date)}
+                                    className={this.state.date.name === date ? 'selected' : ''}
+                                    onClick={this.select.bind(this, 'date', date, 'xxx')}
                                   >{date}</DateBtns>
                         })
                     }
@@ -51,7 +58,7 @@ class Search extends Component {
                 </Header>
                 <div className="channelBtns">
                   <ChannelBtns    
-                    className={this.state.channel === 'ALL' ? 'selected' : ''}
+                    className={this.state.channel.name === 'ALL' ? 'selected' : ''}
                     onClick={this.select.bind(this, 'channel', 'ALL')}
                   >ALL</ChannelBtns>
                   {
@@ -59,15 +66,18 @@ class Search extends Component {
                         if(channel.name.length > 1)
                           return <ChannelBtns 
                                     key={channel.id}
-                                    className={this.state.channel === channel.name ? 'selected' : ''}
-                                    onClick={this.select.bind(this, 'channel', channel.name)}
+                                    className={this.state.channel.name === channel.name ? 'selected' : ''}
+                                    onClick={this.select.bind(this, 'channel', channel.name, channel.id)}
                                   >{channel.name}</ChannelBtns>
                         else return ''
                       }) : ''
                   }
                 </div>
             </ChannelWrapper>
-            <SearchBtnWrapper className={this.state.canStartSearch ? 'canStartSearch' : ''}>
+            <SearchBtnWrapper 
+              className={this.state.canStartSearch ? 'canStartSearch' : ''}
+              onClick={this.sendSearchRequest.bind(this)}
+            >
                 <span>SEARCH</span>
                 <SearchValue>{this.state.searchValue}</SearchValue>
             </SearchBtnWrapper>
@@ -79,14 +89,43 @@ class Search extends Component {
     channelsApi.getChannels()
   }
 
-  select(type, value) {
+  select(type, value, id) {
     const newState = {};
-    newState[type] = value;
+    newState[type] = {
+      name: value,
+      id: id
+    };
     this.setState(newState, () => {
       const { date, channel } = this.state
-      if(date.length > 0 && channel.length > 0) {
-        this.setState({canStartSearch: true})
+      if(date.name.length > 0 && channel.name.length > 0) {
+        const searchValue = this.createSearchValue()
+        this.setState({
+          canStartSearch: true,
+          searchValue: searchValue
+        })
       }
+    })
+  }
+
+  createSearchValue() {
+    const { date, channel } = this.state
+    const dateName = date.name;
+    const channelName = channel.name;
+    if(dateName === 'ANYTIME' && channelName === 'ALL')
+      return 'All activities'
+    else if (dateName === 'LATER')
+      return `${channelName} activities from start_time to end_time`
+    else
+      return `${channelName} activities of ${dateName.toLowerCase()}`
+  }
+
+  createTimeValue() {
+
+  }
+
+  sendSearchRequest() {
+    eventsApi.getEvents({
+      channels: this.state.channel.id
     })
   }
 }

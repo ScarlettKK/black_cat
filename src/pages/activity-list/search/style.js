@@ -12,6 +12,7 @@ export const SearchWrapper = styled.div`
         color: #453257;
         border-radius: 15px;
         padding: 5px 10px;
+        border: none;
     }
     .canStartSearch {
         background-color: #D5EF7F;
@@ -87,4 +88,38 @@ export const SearchBtnWrapper = styled.div`
 export const SearchValue = styled.div`
     font-size: 10px;
     color: #8560A9;
+`;
+
+export const SearchResultWrapper = styled.div`
+    position: absolute;
+    top: 50px;
+    width: 100%;
+    height: 80px;
+    background-color: #FAF9FC;
+    padding: 0px 40px;
+`;
+
+export const SearchResultCount = styled.h1`
+    font-size: 16px;
+    color: #8560A9;
+    margin-top: 20px;
+    margin-bottom: 8px;
+`;
+
+export const SearchContent = styled.p`
+    font-size: 12px;
+    color:#67616D;
+    margin-top: 8px;
+`;
+
+export const ClearSearch = styled.button`
+    font-size: 10px;
+    color: #67616D;
+    background-color: #D5EF7F;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 10px;
+    position: absolute;
+    margin-top: -60px;
+    margin-left: 200px;
 `;

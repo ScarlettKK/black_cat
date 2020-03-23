@@ -4,6 +4,7 @@ import Header from '../../components/header'
 import { ActivityListWrapper, ActivityListContent } from './style'
 import List from './list'
 import Search from './search'
+import SearchResult from './search/searchResult'
 
 class ActivityList extends Component {
   constructor(props) {
@@ -18,6 +19,7 @@ class ActivityList extends Component {
       <ActivityListWrapper>
         <ActivityListContent className = {this.state.isSearch ? 'searchOpenedList' : ''}>
           <Header containSearch="true" searchClick={this.showActivitySearch.bind(this)}/>
+          <SearchResult/>
           <List/> 
         </ActivityListContent>
         <Search isSearch={this.state.isSearch}/>
