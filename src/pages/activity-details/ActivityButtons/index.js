@@ -14,10 +14,10 @@ import commentSvg from '../../../static/svg/comment-single.svg'
 
 class ActivityButtons extends Component {
   render() {
-    const { event, comment } = this.props;
+    const { event, startComment } = this.props;
     return (
         <ActivityButtonsWrapper>
-            <button className="purple" onClick={comment}>
+            <button className="purple" onClick={startComment.bind(null, null)}>
                 <SVG src={commentSvg}/>
             </button>
             <button className="purple" onClick={this.likes.bind(this, event.me_likes)}>

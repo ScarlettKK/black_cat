@@ -12,8 +12,8 @@ export const CommentWrapper = styled.div`
 
 export const CommentMessage = styled.div`
 	display: inline-block;
-	margin-left: 10px;
-	width: calc(100% - 45px);
+	width: calc(100% - 70px);
+	margin-left: 10px;	
 	vertical-align: top;
 	padding-top: 5px;
 `;
@@ -34,4 +34,20 @@ export const Comment = styled.p`
 	color: #67616D;
 	margin: 0px;
 	margin-top: 5px;
+`
+
+export const Reply = styled.div`
+	display: inline-block;
+	width: 25px;
+	height: 25px;
+	vertical-align: top;
+	margin-top: 5px;
+	button{
+		width: 25px;
+		height: 25px;
+		padding: 0px;
+	}
+	svg{
+		fill: #D5EF7F;
+	}
 `

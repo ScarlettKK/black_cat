@@ -22,11 +22,14 @@ import NoActivity from '../../components/no-activity'
 import ActivityButtons from './ActivityButtons'
 import CommentBox from './CommentBox'
 
+const defaultPlaceholder = 'Leave your comment here';
+
 class ActivityDetails extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isComment : false
+      isComment : false,
+      placeholder: defaultPlaceholder
     }
   }
 
@@ -57,15 +60,27 @@ class ActivityDetails extends Component {
                 <Participants id={event.id}></Participants>
               </div>
               <div>
-                <Comments id={event.id} isComment={this.isComment}></Comments>
+                <Comments 
+                  id={event.id} 
+                  isComment={this.isComment} 
+                  startComment={this.startComment.bind(this)}
+                ></Comments>
               </div>
             </Tabs>
           </ActivityDetailsContent>
           {
             this.state.isComment ? 
-            <CommentBox closeComment={this.closeComment.bind(this)}  id={event.id}/>
+            <CommentBox 
+              closeComment={this.closeComment.bind(this)}  
+              id={event.id} 
+              placeholder = {this.state.placeholder}
+            />
             :
-            <ActivityButtons event={event} id={id} comment={this.startComment.bind(this)}/>
+            <ActivityButtons 
+              event={event} 
+              id={id} 
+              startComment={this.startComment.bind(this)}
+            />
           }
         </ActivityDetailsWrapper>
       )
@@ -81,10 +96,11 @@ class ActivityDetails extends Component {
     eventsApi.getEvent(this.props.match.params.id)
   }
 
-  startComment() {
+  startComment(placeholder) {
     this.setState(() => {
       return {
-        isComment: true
+        isComment: true,
+        placeholder: placeholder ? `@${placeholder} ` : defaultPlaceholder
       }
     })
   }
@@ -96,7 +112,6 @@ class ActivityDetails extends Component {
       }
     })
   }
-  
 }
 
 const mapState = (state) => ({

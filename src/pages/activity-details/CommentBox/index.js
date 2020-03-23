@@ -8,13 +8,14 @@ import eventsApi from '../../../api/events'
 
 class CommentBox extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       comment: ''
     }
   }
+  
   render() {
-    const {closeComment} = this.props;
+    const { closeComment, placeholder } = this.props;
     return (
         <CommentBoxWrapper>
             <Purple>
@@ -24,6 +25,7 @@ class CommentBox extends Component {
                 <input 
                   onChange={this.handleInputChange.bind(this)}
                   value={this.state.comment}
+                  placeholder={placeholder}
                 />
             </Purple>
             <Yellow>
@@ -37,11 +39,20 @@ class CommentBox extends Component {
 
   sendComment() {
     eventsApi.addComment(this.props.id, this.state)
+    this.clearComment();
   }
 
   handleInputChange(event) {
     this.setState({
       comment: event.target.value
+    })
+  }
+
+  clearComment() {
+    this.setState(() => {
+      return {
+        comment: ''
+      }
     })
   }
 }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import SVG from 'react-inlinesvg';
 
 import { 
   CommentsWrapper,
@@ -7,14 +8,16 @@ import {
   CommentMessage,
   UserName,
   CreateTime,
-  Comment
+  Comment,
+  Reply
  } from './style'
 import eventsApi from '../../../api/events'
 import Avatar from '../../../components/avatar'
+import replySvg from '../../../static/svg/reply.svg'
 
 class Comments extends Component {
   render() {
-    const { comments } = this.props;
+    const { comments, startComment } = this.props;
     return (
         <CommentsWrapper>
           {
@@ -29,6 +32,11 @@ class Comments extends Component {
                       {comment.comment}
                     </Comment>
                   </CommentMessage>
+                  <Reply>
+                    <button onClick={startComment.bind(null, comment.user.username)}>
+                      <SVG src={replySvg}/>
+                    </button>
+                  </Reply>
                 </CommentWrapper>
               )
             })

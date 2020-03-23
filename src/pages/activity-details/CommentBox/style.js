@@ -32,6 +32,9 @@ export const Purple = styled.div`
         color: #D3C1E5;
         left: -3px;
     }
+    input::-webkit-input-placeholder{
+        color: #D3C1E5;
+    }
 `;
 
 export const Yellow = styled.div`
