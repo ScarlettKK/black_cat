@@ -1,16 +1,22 @@
 import React, { Component } from 'react';
+import SVG from 'react-inlinesvg';
+
 import { 
   DetailsWrapper, 
   Images,
   Description,
   Titile,
   DetailsBlock,
-  Time,
+  Date,
   WhenContent,
   Address,
-  LocationImg
+  LocationImg,
+  Time
 } from './style'
 import locationImg from '../../../static/gmap.png'
+import time from '../../../util/time'
+import dateFrom from '../../../static/svg/date-from.svg'
+import dateTo from '../../../static/svg/date-to.svg'
 
 class Details extends Component {
   render() {
@@ -39,8 +45,13 @@ class Details extends Component {
           <DetailsBlock> 
             <Titile>When</Titile>
             <WhenContent>
-              <Time className="begin_time">{begin_time}</Time>
-              <Time>{end_time}</Time>
+              <Date className="begin_time">
+                <SVG src={dateFrom}/>{time.getDate(begin_time)} 
+                <Time>{time.getTime(begin_time)}</Time>
+              </Date>
+              <Date>
+                <SVG src={dateTo}/>{time.getDate(end_time)}
+              </Date>
             </WhenContent>
           </DetailsBlock>
           <DetailsBlock>

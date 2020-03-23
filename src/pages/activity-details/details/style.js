@@ -44,7 +44,7 @@ export const WhenContent =  styled.div`
 	}
 `
 
-export const Time =  styled.div`
+export const Date =  styled.div`
 	display: inline-block;
 	font-size: 16px;
 	color: #67616D;
@@ -53,6 +53,18 @@ export const Time =  styled.div`
 	height: 100px;
 	vertical-align: middle;
 	margin-top: 10px;
+	svg{
+		width: 16px;
+		height: 16px;
+		fill: #D5EF7F;
+		margin-right: 5px;
+	}
+`
+
+export const Time =  styled.div`
+	font-size: 32px;
+	color: #AECB4F;
+	margin-top: 15px;
 `
 
 export const Address =  styled.div`

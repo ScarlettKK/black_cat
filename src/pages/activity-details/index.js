@@ -47,7 +47,7 @@ class ActivityDetails extends Component {
               <Avatar imgUrl={event.creator.avatar}/>
               <CreateMessage>
                 <p className="userName">{event.creator.username}</p>
-                <p className="createTime">Published {time.getDiff(event.create_time)} ago</p>
+                <p className="createTime">Published {time.getDiff(event.create_time)}</p>
               </CreateMessage>
             </ActivityCreatorMessage>
           </ActivityDetailsHeader>

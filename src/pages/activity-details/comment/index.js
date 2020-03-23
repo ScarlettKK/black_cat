@@ -14,6 +14,7 @@ import {
 import eventsApi from '../../../api/events'
 import Avatar from '../../../components/avatar'
 import replySvg from '../../../static/svg/reply.svg'
+import time from '../../../util/time'
 
 class Comments extends Component {
   render() {
@@ -27,7 +28,7 @@ class Comments extends Component {
                   <Avatar imgUrl={comment.user.avatar} key={comment.user.id}/>
                   <CommentMessage>
                     <UserName>{comment.user.username}</UserName>
-                    <CreateTime>{comment.create_time}</CreateTime>
+                    <CreateTime>Published {time.getDiff(comment.create_time)}</CreateTime>
                     <Comment>
                       {comment.comment}
                     </Comment>
