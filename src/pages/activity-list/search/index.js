@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { DatePicker } from 'antd';
-// import moment from 'moment'
 
 import { 
     SearchWrapper,

@@ -2,14 +2,14 @@ const baseUrl = '/api/v1'
 const baseUrl_events = `${baseUrl}/events`
 const baseUrl_user = `${baseUrl}/user`
 
-function generateQueryString (params) {////////////////
-    let qs = '';
+function generateQueryString (params) {
+    let queryString = '';
 
     Object.entries(params).forEach((p) => {
-        qs += `${ p[0] }=${ p[1] }&`;
+        queryString += `${ p[0] }=${ p[1] }&`;
     });
 
-    return qs.slice(0, -1);
+    return queryString.slice(0, -1);
 }
 
 export default {
