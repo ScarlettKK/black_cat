@@ -8,7 +8,7 @@ export const ActivityListWrapper = styled.div`
         margin-left: 75%;
     }
     .startSearch {
-        top: 130px;
+        top: 150px;
     }
 `;
 

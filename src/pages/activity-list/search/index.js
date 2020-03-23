@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
+import { DatePicker } from 'antd';
+// import moment from 'moment'
 
 import { 
     SearchWrapper,
@@ -28,13 +30,17 @@ class Search extends Component {
         name: ''
       },
       canStartSearch: false,
-      searchValue: ''
+      searchValue: '',
+      isRangePicker: false,
+      rangePickerValue: '',
+      dateStrings: ''
     }
   }
  
   render() {
+    const { RangePicker } = DatePicker;
     const { isSearch, channels } = this.props;
-    const dates = ['ANYTIME', 'TODAY', 'TOMORROW', 'THIS WEEK', 'THIS MONTH', 'LATER']
+    const dates = ['ANYTIME', 'TODAY', 'TOMORROW', 'THIS WEEK', 'THIS MONTH']
 
     return (
         <SearchWrapper className = {isSearch ? 'searchOpened' : ''}>
@@ -51,6 +57,17 @@ class Search extends Component {
                                     onClick={this.select.bind(this, 'date', date)}
                                   >{date}</DateBtns>
                         })
+                    }
+                    <DateBtns 
+                      className={this.state.date.name === 'LATER' ? 'selected' : ''}
+                      onClick={this.openRangePicker.bind(this)}
+                    >LATER</DateBtns>
+                    {
+                      this.state.isRangePicker ? 
+                      <RangePicker 
+                        onChange={this.handleRangePickerValueChange.bind(this)}
+                      />
+                      : ''
                     }
                 </div>
             </DateWrapper>
@@ -91,6 +108,29 @@ class Search extends Component {
     channelsApi.getChannels()
   }
 
+  openRangePicker() {
+    this.setState((prevState) => {
+      return {
+        isRangePicker: !prevState.isRangePicker
+      }
+    })
+  }
+
+  handleRangePickerValueChange(dates, dateStrings) {
+    this.setState({
+      rangePickerValue: {
+        before: dates[0].valueOf(), 
+        after: dates[1].valueOf()
+      },
+      dateStrings: {
+        start_time: dateStrings[0],
+        end_time: dateStrings[1]
+      }
+    }, ()=> {
+      this.select('date', 'LATER')
+    })
+  }
+
   select(type, name, value) {
     const newState = {};
     newState[type] = {
@@ -114,20 +154,24 @@ class Search extends Component {
   }
 
   createSearchValue() {
-    const { date, channel } = this.state
+    const { date, channel, dateStrings } = this.state
     const dateName = date.name;
     const channelName = channel.name;
+    const start_time = dateStrings.start_time || ''
+    const end_time = dateStrings.end_time || ''
+
     if(dateName === 'ANYTIME' && channelName === 'ALL')
       return 'All activities'
     else if (dateName === 'LATER')
-      return `${channelName} activities from start_time to end_time`
+      return `${channelName} activities from ${start_time} to ${end_time}`
     else
       return `${channelName} activities of ${dateName.toLowerCase()}`
   }
 
   createTimeValue(timeType) {
+    const { rangePickerValue } = this.state
     if(timeType === 'LATER')
-      return {before: 1587548461913, after: 1584956461913}
+      return rangePickerValue !== '' ? rangePickerValue : ''
     else if(timeType === 'ANYTIME')
       return ''
     else 
@@ -153,7 +197,7 @@ class Search extends Component {
       result.before = date.value.before
       result.after = date.value.after
     }
-    
+
     return result;
   }
 }

@@ -31,7 +31,7 @@ const filters = {
             after: parseInt(oneDayAgo/1000),
         }
     },
-    'tommorow': () => {
+    'tomorrow': () => {
         const now = new Date().valueOf();
         const oneDayAfter = now + DAY;
 

@@ -71,7 +71,7 @@ export const Header = styled.h1`
 
 export const SearchBtnWrapper = styled.div`
     width: 100%; 
-    height: 70px;
+    height: 90px;
     background-color: #BABABA;
     position: absolute;
     bottom: 0px;
@@ -80,7 +80,7 @@ export const SearchBtnWrapper = styled.div`
     font-weight: bold;  
     text-align: center; 
     span{
-        margin-top: 23px;
+        margin-top: 33px;
         display: inline-block;
     }
 `;
@@ -94,7 +94,7 @@ export const SearchResultWrapper = styled.div`
     position: absolute;
     top: 50px;
     width: 100%;
-    height: 80px;
+    height: 100px;
     background-color: #FAF9FC;
     padding: 0px 35px;
 `;
@@ -120,6 +120,6 @@ export const ClearSearch = styled.button`
     padding: 5px 10px;
     border-radius: 10px;
     position: absolute;
-    margin-top: -60px;
+    top: 18px;
     margin-left: 200px;
 `;
